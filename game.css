@@ -210,3 +210,16 @@ neighboring elements.  Necessary to avoid giving ids to the boundary divs
 	text-shadow: none;
 }
 
+
+.coin {
+	position: absolute;
+	height: 25px;
+	z-index:2;
+}
+#coin1 {
+	top: 260px;
+}
+#coin2 {
+	top: 410px;
+	left: 680px;
+}

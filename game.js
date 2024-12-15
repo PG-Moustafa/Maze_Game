@@ -11,6 +11,8 @@ let show_score;
 let background_music;
 let win_sound;
 let lose_sound;
+let coin_sound;
+let coins;
 
 document.addEventListener("DOMContentLoaded", loadPage);
 
@@ -36,6 +38,9 @@ function startGame(){
     is_game_running = true;
     for(let i = 0; i < boundaries.length; i++)
         boundaries[i].style.backgroundColor = "#eeeeee"; 
+    for(let i = 0; i < coins.length; i++){
+        coins[i].style.display = 'block';
+    }
 }
 
 function endGame(){
@@ -52,6 +57,9 @@ function endGame(){
 function resetGame() {
     score = 0;
     display_score();
+    for(let i = 0; i < coins.length; i++){
+        coins[i].style.display = 'block';
+    }
 }
 
 function loadPage(){
@@ -60,10 +68,19 @@ function loadPage(){
     boundaries = document.getElementsByClassName("boundary");
     status_display =  document.getElementById("status");
     reset = document.getElementById("reset");
+    coins = document.getElementsByClassName("coin");
 
     end.addEventListener("mouseover", endGame);
     start.addEventListener("click", startGame);
     reset.addEventListener("click", resetGame);
+    for(let i = 0; i < coins.length; i++){
+        coins[i].addEventListener("mouseover", () => {
+            coins[i].style.display = 'none';
+            coin_sound.play();
+            score += 3;
+            display_score();
+        });
+    }
     for(let i = 0; i < boundaries.length; i++){
         boundaries[i].addEventListener("mouseover", gameOver);
     }
@@ -74,6 +91,7 @@ function loadPage(){
 
     win_sound = document.getElementById("sound2");
     lose_sound = document.getElementById("sound3");
+    coin_sound = document.getElementById("sound4");
 }
 
 function timer(){
@@ -98,11 +116,21 @@ function timer(){
     }, 1000);
 }
 
+// create random coins
 // function add_coins() {
-//     return;
+//     const boundary1 = document.getElementById("boundary1");
+//     const boundary2 = document.getElementById("boundary2");
+
+//     let coin = document.createElement("img");
+//     coin.src = "images/star.png";
+//     coin.classList.add("coin");
+
 // }
 
-
+// add 3 to score
+function get_coin() {
+    
+}
 
 
 
